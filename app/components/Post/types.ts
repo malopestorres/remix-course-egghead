@@ -1,5 +1,6 @@
-import type { ComponentPropsWithoutRef } from "react"
+import type { ComponentPropsWithoutRef } from "react";
 
-export type Props = ComponentPropsWithoutRef<'div'> & {
-    header?: string | null
-}
+export type Props = ComponentPropsWithoutRef<"div"> & {
+  header?: string | null;
+  authorName?: string | null;
+};

@@ -1,4 +1,5 @@
 import { Form } from '@remix-run/react'
+import { Button } from '../Button';
 import type { Props } from './types';
 
 
@@ -39,9 +40,13 @@ function PostForm({error, fields, method='post',
         )}
     </div>
     {error?.formError && <p className="text-red-500">{error.formError}</p>}
-    <button className="transition rounded text-blue-700" type="submit">
-        Create Post
-      </button>
+   <Button
+   type="submit"
+   className="transition rounded text-blue-700
+   font-bold py-4 px-6 transparent hover:bg-gray-100"
+   >
+    Create Post
+   </Button>
   </Form>
   )
 }

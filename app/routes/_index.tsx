@@ -15,7 +15,7 @@ export const meta: V2_MetaFunction = () => {
 
 
 type LoaderData = {
-  posts: Post[]
+  posts: Awaited<ReturnType<typeof getPosts>>
 }
 
 type ActionData = {
@@ -49,7 +49,9 @@ if(!result.success){
   }
  }, {status: 400}) 
 }
-await createPost({title: result.data.title ?? null, body:result.data.body ?? null})
+await createPost({title: result.data.title ?? null, body:result.data.body, authorId: "847a1bed-d0ef-4b14-9a3f-34aba582f545"})
+
+
 
 return redirect('/')
 
@@ -79,9 +81,10 @@ export default function Index() {
       />
       <ul>
       {posts.map(post => (
-        <li key={post.title}>
+        <li key={post.id}>
 
-        <PostComponent header={post.title}>
+        <PostComponent authorName={post?.author?.email} 
+        header={post.title}>
           {post.body}
         </PostComponent>
         </li>
