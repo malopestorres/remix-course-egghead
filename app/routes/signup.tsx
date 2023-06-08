@@ -1,4 +1,4 @@
-
+import {UserForm} from "~/components/UserForm"
 
 function SignUpPage() {
   return (

@@ -1,11 +1,14 @@
 import { Form } from '@remix-run/react';
-import { useTransition } from 'react';
+import { useNavigation } from "@remix-run/react";
 import { Button } from '../Button';
 import type { Props } from './types';
 
+
+
 function UserForm({error, fields, children, method = 'post', ...props}: Props) {
 
-  const {state}:any = useTransition();
+  const navigation = useNavigation();
+
 
   return (
     <Form method="post" className="flex flex-col gap-4" {...props}>
@@ -19,7 +22,6 @@ function UserForm({error, fields, children, method = 'post', ...props}: Props) {
           name="email"
           className="p-4 border border-gray-200 rounded"
           autoComplete="user-name"
-          required
         />
         {error?.fieldErrors?.email && (
           <p className="text-red-500">{error?.fieldErrors?.email}</p>
@@ -35,7 +37,6 @@ function UserForm({error, fields, children, method = 'post', ...props}: Props) {
           name="password"
           className="p-4 border border-gray-200 rounded"
           autoComplete="current-password"
-          required
         />
         {error?.fieldErrors?.password && (
           <p className="text-red-500">{error?.fieldErrors?.password}</p>
@@ -43,12 +44,12 @@ function UserForm({error, fields, children, method = 'post', ...props}: Props) {
       </div>
     <Button
     type="submit"
-    disabled={state !== "idle"
-     ? "Login"
-    : "Logging in..."
-    }
+    disabled={navigation.state !== "idle"}
     >
-
+{  navigation.state === "submitting"
+      ? "Login in..."
+    : "Login"
+    }
     </Button>
       {error?.formError && <p className="text-red-500">{error?.formError}</p>}
     </Form>

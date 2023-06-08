@@ -1,9 +1,10 @@
-import type { ComponentPropsWithoutRef } from "react";
+import { FormProps } from "@remix-run/react";
+
 
 export type HttpMethod = "get" | "post" | "put" | "delete";
 
-export type Props = ComponentPropsWithoutRef<"form"> & {
-  method?: HttpMethod;
+export type Props = FormProps & {
+  //method?: HttpMethod;
   error?: {
     formError?: string[];
     fieldErrors?: {

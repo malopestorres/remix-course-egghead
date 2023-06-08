@@ -10,6 +10,7 @@ import {
 } from "@remix-run/react";
 
 import styles from './styles/app.css'
+import Header from "./components/Header";
 
 export function links() {
   return [{ rel: 'stylesheet', href: styles}]
@@ -29,7 +30,9 @@ export default function App() {
         <Links />
       </head>
       <body>
+      <Header/>
         <Outlet />
+   
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
